@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "promptshield"
+version = "0.0.1"
+description = "Open-source toolkit that red-teams LLM applications with prompt injection, jailbreak and data-leak attacks."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Daksh Kumawat" }]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
