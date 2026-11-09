@@ -57,3 +57,6 @@ GitHub: [@dakshkumawat07](https://github.com/dakshkumawat07)
 
 ## 🚀 Future Vision
 A community-driven library of LLM attack payloads and an easy way to run them in CI.
+
+## 📄 License
+Released under the [MIT License](LICENSE).
