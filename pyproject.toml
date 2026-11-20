@@ -19,3 +19,6 @@ dev = ["pytest>=8"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[project.scripts]
+promptshield = "promptshield.cli:main"
