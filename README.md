@@ -19,18 +19,59 @@ PromptShield tests whether an LLM-powered app (chatbot, agent, API) can be trick
 
 ## 📈 Project Progress
 - [x] v0.0: Project skeleton and README
-- [ ] v0.1: Core data models and first attack module
-- [ ] v0.2: Target connector and demo vulnerable bot
-- [ ] v0.3: Scoring engine
-- [ ] v0.4: Reports (JSON, then HTML)
-- [ ] v1.0: CLI, tests, CI, documentation
+- [x] v0.1: Core data models and first attack module
+- [x] v0.2: Target interface and mock targets
+- [x] v0.3: Canary scoring engine and runner
+- [x] v0.4: Results summary and CLI (working MVP)
+- [ ] v0.5: More attack families (jailbreaks, system-prompt leaks)
+- [ ] v0.6: Real targets (HTTP APIs, local LLMs)
+- [ ] v0.7: JSON and HTML reports
+- [ ] v1.0: CI, documentation, PyPI release
 
 ## 🔮 Planned Improvements
 - More attack families (indirect injection, encoding tricks)
 - OWASP LLM Top 10 mapping for every finding
 
 ## ▶️ How to Use
-Coming soon.
+**Install (development):**
+
+```bash
+git clone https://github.com/dakshkumawat07/PromptShield.git
+cd PromptShield
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+**Run attacks against a built-in mock target:**
+
+```bash
+promptshield run --rules rules/prompt_injection.json --target mock-vulnerable
+promptshield run --rules rules/prompt_injection.json --target mock-secure
+```
+
+**Example output (mock-vulnerable):**
+
+```
+Target: mock-vulnerable
+  [SUCCESS] PI-001 Basic instruction override
+  [SUCCESS] PI-002 Polite override
+  [SUCCESS] PI-003 Fake system message
+  [SUCCESS] PI-004 Delimiter escape
+  [SUCCESS] PI-005 Maintenance mode role change
+
+Attacks judged: 5, succeeded: 5 (100%)
+Errors (not judged): 0
+By category:
+  prompt_injection: 5/5 (100%)
+By severity:
+  high: 2/2 (100%)
+  medium: 3/3 (100%)
+```
+
+**Use it in CI:** add `--fail-on-success` and the command exits with code 1 if any attack succeeds.
+
+**Run the tests:** `python -m pytest`
 
 ## 🗂️ Project Structure
 ```
